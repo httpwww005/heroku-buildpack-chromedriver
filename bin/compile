@@ -32,9 +32,9 @@ function indent() {
 }
 
 # get chromedriver
-topic "Getting chromedriver from $WDZIP"
 WDZIP="https://chromedriver.storage.googleapis.com/2.28/chromedriver_linux64.zip"
 WDLOCATION="/app/webdriver.zip"
+topic "Getting chromedriver from $WDZIP"
 curl -o $WDLOCATION $WDZIP
 unzip -o $WDLOCATION -d "$BUILD_DIR/.heroku/python/bin/"
 
