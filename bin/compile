@@ -36,7 +36,7 @@ topic "Getting webdriver from $WDZIP"
 WDZIP="https://chromedriver.storage.googleapis.com/2.28/chromedriver_linux64.zip"
 WDLOCATION="/app/webdriver.zip"
 curl -o $WDLOCATION $WDZIP
-unzip $WDLOCATION -d "$BUILD_DIR/.heroku/python/bin/"
+unzip $WDLOCATION -d "$BUILD_DIR/.heroku/python/bin/ -o"
 
 # google-chrome shim
 topic "Creating google-chrome shim"
