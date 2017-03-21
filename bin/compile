@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+# fail fast
+set -e
+
+# debug
+# set -x
+
+# parse and derive params
+BUILD_DIR=$1
+CACHE_DIR=$2
+LP_DIR=`cd $(dirname $0); cd ..; pwd`
+
+#PACKAGES="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb libxss1"
+
+function error() {
+  echo " !     $*" >&2
+  exit 1
+}
+
+function topic() {
+  echo "-----> $*"
+}
+
+function indent() {
+  c='s/^/       /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
+}
+
+# get webdriver
+topic "Getting webdriver from $WDZIP"
+WDZIP="https://chromedriver.storage.googleapis.com/2.28/chromedriver_linux64.zip"
+WDLOCATION="/app/webdriver.zip"
+curl -o $WDLOCATION $WDZIP
+unzip $WDLOCATION -d "$BUILD_DIR"
+
+# google-chrome shim
+topic "Creating google-chrome shim"
+SHIM=$BUILD_DIR/.apt/usr/bin/google-chrome-stable
+rm $SHIM
+cat <<EOF >$SHIM
+#!/usr/bin/env bash
+/app/.apt/opt/google/chrome/google-chrome --remote-debugging-port=9222 --headless --no-sandbox --disable-gpu \$@
+EOF
+chmod +x $SHIM
