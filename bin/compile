@@ -12,8 +12,6 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
-#PACKAGES="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb libxss1"
-
 function error() {
   echo " !     $*" >&2
   exit 1
@@ -32,7 +30,8 @@ function indent() {
 }
 
 # get chromedriver
-WDZIP="https://chromedriver.storage.googleapis.com/2.28/chromedriver_linux64.zip"
+WDVERSION="2.8"
+WDZIP="https://chromedriver.storage.googleapis.com/$WDVERSION/chromedriver_linux64.zip"
 WDLOCATION="/app/webdriver.zip"
 topic "Getting chromedriver from $WDZIP"
 curl -o $WDLOCATION $WDZIP
