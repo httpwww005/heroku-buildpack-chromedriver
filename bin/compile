@@ -37,6 +37,7 @@ WDLOCATION="/app/webdriver.zip"
 topic "Getting chromedriver from $WDZIP"
 curl -o $WDLOCATION $WDZIP
 unzip -o $WDLOCATION -d "$BUILD_DIR/.heroku/python/bin/"
+rm -f $WDLOCATION
 
 # google-chrome shim
 topic "Creating google-chrome shim"
