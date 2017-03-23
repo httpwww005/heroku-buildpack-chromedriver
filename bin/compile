@@ -30,7 +30,8 @@ function indent() {
 }
 
 # get chromedriver
-WDVERSION="2.8"
+WDLATEST="https://chromedriver.storage.googleapis.com/LATEST_RELEASE"
+WDVERSION=`curl -s $WDLATEST`
 WDZIP="https://chromedriver.storage.googleapis.com/$WDVERSION/chromedriver_linux64.zip"
 WDLOCATION="/app/webdriver.zip"
 topic "Getting chromedriver from $WDZIP"
