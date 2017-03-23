@@ -34,7 +34,7 @@ WDLATEST="https://chromedriver.storage.googleapis.com/LATEST_RELEASE"
 WDVERSION=`curl -s $WDLATEST`
 WDZIP="https://chromedriver.storage.googleapis.com/$WDVERSION/chromedriver_linux64.zip"
 WDLOCATION="/app/webdriver.zip"
-topic "Getting chromedriver version: $WDLATEST"
+topic "Getting chromedriver version: $WDVERSION"
 curl -s -o $WDLOCATION $WDZIP
 unzip -o $WDLOCATION -d "$BUILD_DIR/.heroku/python/bin/"
 rm -f $WDLOCATION
